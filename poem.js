@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             
             const { url: publicUrl } = await response.json();
-            window.open(`https://wa.me/?text=Escucha mi poema 🎧: ${publicUrl}`, '_blank');
-            
+navigator.clipboard.writeText(publicUrl);
+alert('Enlace copiado: ' + publicUrl);            
         } catch (error) {
             alert('Error al compartir: ' + error.message);
         }
