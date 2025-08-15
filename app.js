@@ -1,16 +1,15 @@
-// Cargar lista de poemas desde Firestore
-document.addEventListener('DOMContentLoaded', () => {
+// app.js
+document.addEventListener('DOMContentLoaded', async () => {
     const poemsList = document.getElementById('poems');
-    
-    db.collection('poems').get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            const poem = doc.data();
-            const li = document.createElement('li');
-            li.textContent = poem.title;
-            li.addEventListener('click', () => {
-                window.location.href = `poem.html?id=${doc.id}`;
-            });
-            poemsList.appendChild(li);
+    const response = await fetch('poems.json'); // Carga el JSON local
+    const poems = await response.json();
+
+    poems.forEach(poem => {
+        const li = document.createElement('li');
+        li.textContent = poem.title;
+        li.addEventListener('click', () => {
+            window.location.href = `poem.html?id=${poem.id}`;
         });
+        poemsList.appendChild(li);
     });
 });

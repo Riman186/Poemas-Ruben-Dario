@@ -1,24 +1,23 @@
-// poem.js (tu archivo actual)
-async function uploadRecording(audioBlob) {
-  // Convierte el Blob a Base64
-  const reader = new FileReader();
-  reader.readAsDataURL(audioBlob);
-  
-  reader.onloadend = async () => {
-    const base64Audio = reader.result.split(',')[1]; // Quita el prefijo "data:audio/mp3;base64,"
+// poem.js
+document.addEventListener('DOMContentLoaded', async () => {
+    const recordButton = document.getElementById('record-button');
+    const playButton = document.getElementById('play-button');
+    const shareButton = document.getElementById('share-button');
+    const poemTitle = document.getElementById('poem-title');
+    const poemText = document.getElementById('poem-text');
+    let audioBlob;
+    let audioUrl;
 
-    const response = await fetch('/api/upload', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ audio: base64Audio }),
-    });
+    // Cargar el poema desde poems.json
+    const urlParams = new URLSearchParams(window.location.search);
+    const poemId = urlParams.get('id');
+    const response = await fetch('poems.json');
+    const poems = await response.json();
+    const poem = poems.find(p => p.id == poemId);
 
-    const data = await response.json();
-    console.log('Audio subido:', data.url); // URL pública del audio
-    // Aquí puedes guardar "data.url" en tu base de datos (ej: Supabase o Firestore para los poemas)
-  };
-}
+    poemTitle.textContent = poem.title;
+    poemText.textContent = poem.text;
 
-// Ejemplo de uso al grabar:
-const audioBlob = new Blob([audioChunks], { type: 'audio/mp3' });
-uploadRecording(audioBlob);
+    // Resto del código (grabación, upload a Vercel Blob, etc.)
+    // ... (usa el mismo código que te pasé antes para la grabación)
+});
