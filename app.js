@@ -11,5 +11,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.location.href = `poem.html?id=${poem.id}`;
         });
         poemsList.appendChild(li);
+        // Dentro del forEach en app.js
+li.innerHTML = `
+  <h3>${poem.title}</h3>
+  <p><strong>Tema:</strong> ${poem.theme}</p>
+`;
     });
 });

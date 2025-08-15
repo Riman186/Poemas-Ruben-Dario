@@ -1,13 +1,16 @@
-
 [
   {
     "id": 1,
     "title": "A Margarita Debayle",
-    "text": "Margarita, está linda la mar..."
+    "text": "Margarita, está linda la mar...",
+    "author": "Rubén Darío",
+    "theme": "Infantil"
   },
   {
     "id": 2,
     "title": "Sonatina",
-    "text": "La princesa está triste..."
+    "text": "La princesa está triste...",
+    "author": "Rubén Darío",
+    "theme": "Fantasía"
   }
 ]
