@@ -1,16 +1,46 @@
-import { put } from '@vercel/blob';
-
-export default async function handler(req, res) {
-    if (req.method !== 'POST') return res.status(405).end();
+async function shareRecording() {
+    if (!currentAudioUrl) return;
     
     try {
-        const { audio } = req.body;
-        const blob = await put(`poema-${Date.now()}.mp3`, Buffer.from(audio, 'base64'), {
-            access: 'public',
-            token: process.env.BLOB_READ_WRITE_TOKEN
+        // 1. Convertir Blob a Base64
+        const blob = await fetch(currentAudioUrl).then(r => r.blob());
+        const base64Audio = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onerror = reject;
+            reader.onloadend = () => {
+                if (reader.result) {
+                    resolve(reader.result.split(',')[1]);
+                } else {
+                    reject(new Error('Conversión fallida'));
+                }
+            };
+            reader.readAsDataURL(blob);
         });
-        res.status(200).json({ url: blob.url });
+
+        // 2. Subir a Vercel Blob
+        const response = await fetch('/api/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ audio: base64Audio })
+        });
+
+        // 3. Verificar la respuesta
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Error ${response.status}: ${errorText}`);
+        }
+
+        const result = await response.json();
+        if (!result.success) {
+            throw new Error(result.error || 'Error desconocido');
+        }
+
+        // 4. Compartir en WhatsApp
+        const whatsappUrl = `https://wa.me/?text=Escucha mi poema 🎙️: ${result.url}`;
+        window.open(whatsappUrl, '_blank');
+
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error al compartir:', error);
+        alert(`Error al compartir: ${error.message}`);
     }
 }
