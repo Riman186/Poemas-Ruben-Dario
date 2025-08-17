@@ -1,46 +1,22 @@
 async function shareRecording() {
-    if (!currentAudioUrl) return;
-    
-    try {
-        // 1. Convertir Blob a Base64
-        const blob = await fetch(currentAudioUrl).then(r => r.blob());
-        const base64Audio = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onerror = reject;
-            reader.onloadend = () => {
-                if (reader.result) {
-                    resolve(reader.result.split(',')[1]);
-                } else {
-                    reject(new Error('Conversión fallida'));
-                }
-            };
-            reader.readAsDataURL(blob);
-        });
+  if (!currentAudioUrl) return;
 
-        // 2. Subir a Vercel Blob
-        const response = await fetch('/api/upload', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ audio: base64Audio })
-        });
+  try {
+    const blob = await fetch(currentAudioUrl).then(r => r.blob());
 
-        // 3. Verificar la respuesta
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Error ${response.status}: ${errorText}`);
-        }
+    // Crear un link de descarga
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "mi-grabacion.mp3"; // nombre del archivo
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
 
-        const result = await response.json();
-        if (!result.success) {
-            throw new Error(result.error || 'Error desconocido');
-        }
+    alert("🎶 Grabación descargada. Ahora podés enviarla por WhatsApp manualmente.");
 
-        // 4. Compartir en WhatsApp
-        const whatsappUrl = `https://wa.me/?text=Escucha mi poema 🎙️: ${result.url}`;
-        window.open(whatsappUrl, '_blank');
-
-    } catch (error) {
-        console.error('Error al compartir:', error);
-        alert(`Error al compartir: ${error.message}`);
-    }
+  } catch (error) {
+    console.error("Error al descargar:", error);
+    alert(`Error al descargar: ${error.message}`);
+  }
 }

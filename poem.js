@@ -1,29 +1,23 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // Elementos del DOM
     const recordButton = document.getElementById('record-button');
     const playButton = document.getElementById('play-button');
     const shareButton = document.getElementById('share-button');
     const recordingsList = document.getElementById('recordings');
     
-    // Variables de estado
     let mediaRecorder;
     let audioChunks = [];
     let currentAudioUrl = null;
     const poemId = new URLSearchParams(window.location.search).get('id');
     
-    // Cargar poemas (simulado)
-    const poem = { title: "Poema Ejemplo", text: "Texto del poema..." }; // Reemplaza con tu carga real
+    const poem = { title: "Poema Ejemplo", text: "Texto del poema..." }; 
     
-    // Cargar grabaciones guardadas
     let recordings = loadRecordings();
     renderRecordings();
 
-    // Eventos de botones
     recordButton.addEventListener('click', toggleRecording);
     playButton.addEventListener('click', () => playRecording(currentAudioUrl));
     shareButton.addEventListener('click', shareRecording);
 
-    // Funciones principales
     async function toggleRecording() {
         if (mediaRecorder?.state === 'recording') {
             mediaRecorder.stop();
@@ -68,8 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!currentAudioUrl) return;
         
         try {
-            // Convertir Blob a Base64
-            const blob = await fetch(currentAudioUrl).then(r => r.blob());
+           const blob = await fetch(currentAudioUrl).then(r => r.blob());
             const base64Audio = await new Promise(resolve => {
                 const reader = new FileReader();
                 reader.onloadend = () => resolve(reader.result.split(',')[1]);
@@ -118,7 +111,6 @@ alert('Enlace copiado: ' + publicUrl);
         localStorage.setItem(`recordings_${poemId}`, JSON.stringify(recordings));
     }
 
-    // Funciones globales para los botones dinámicos
     window.playRecording = playRecording;
     window.deleteRecording = deleteRecording;
     window.shareSingleRecording = async (url) => {

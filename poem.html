@@ -17,15 +17,51 @@
         <section id="recording-section">
             <button id="record-button">Grabar</button>
             <button id="play-button" disabled>Reproducir</button>
-            <button id="share-button" disabled>Compartir</button>
+<button id="downloadBtn" disabled>Descargar grabación</button>
         </section>
         <section id="recordings-list">
     <h3>Mis Grabaciones</h3>
     <ul id="recordings">
-        <!-- Las grabaciones se cargarán aquí -->
     </ul>
 </section>
     </main>
     <script src="poem.js"></script>
+    <script>
+let currentAudioUrl = null;
+
+function setRecordingUrl(url) {
+  currentAudioUrl = url;
+  document.getElementById("downloadBtn").disabled = false;
+}
+
+async function downloadRecording() {
+  if (!currentAudioUrl) return;
+
+  try {
+    const blob = await fetch(currentAudioUrl).then(r => r.blob());
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "mi-grabacion.mp3";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+
+    alert("🎶 Grabación descargada, ya podés compartirla por WhatsApp.");
+  } catch (error) {
+    console.error("Error al descargar:", error);
+    alert(`Error al descargar: ${error.message}`);
+  }
+}
+
+document.getElementById("downloadBtn").addEventListener("click", downloadRecording);
+
+// ⚡️ Esto es solo para pruebas (pone tu URL de audio real cuando grabes)
+setTimeout(() => {
+  setRecordingUrl("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
+}, 2000);
+</script>
+
 </body>
 </html>
