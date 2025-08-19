@@ -1,77 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leer Poema</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leer Poema</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1 id="poem-title"></h1>
-    </header>
-    <main>
-        <section id="poem-content">
-            <p id="poem-text"></p>
-        </section>
-        <section id="recording-section">
-            <button id="record-button">Grabar</button>
-            <button id="play-button" disabled>Reproducir</button>
-            <button id="downloadBtn" disabled>Descargar grabación</button>
-        </section>
-        <section id="recordings-list">
-            <h3>Mis Grabaciones</h3>
-            <ul id="recordings"></ul>
-        </section>
-    </main>
+  <header>
+      <h1 id="poem-title">Poema</h1>
+  </header>
+  <main>
+      <section id="poem-content">
+          <p id="poem-text">Texto del poema aquí...</p>
+      </section>
 
-    <script>
-      let currentAudioUrl = null;
+      <section id="recording-section">
+          <button id="record-button">🎤 Grabar</button>
+      </section>
 
-      function setRecordingUrl(url) {
-        currentAudioUrl = url;
-        document.getElementById("downloadBtn").disabled = false;
-        document.getElementById("play-button").disabled = false;
-      }
+      <section id="recordings-list">
+          <h3>Mis Grabaciones</h3>
+          <ul id="recordings"></ul>
+      </section>
+  </main>
 
-      async function downloadRecording() {
-        if (!currentAudioUrl) return;
-        try {
-          const blob = await fetch(currentAudioUrl).then(r => r.blob());
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "mi-grabacion.mp3";
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          window.URL.revokeObjectURL(url);
-
-          alert("🎶 Grabación descargada, ya podés compartirla por WhatsApp.");
-        } catch (error) {
-          console.error("Error al descargar:", error);
-          alert(`Error al descargar: ${error.message}`);
-        }
-      }
-
-      function playRecording() {
-        if (!currentAudioUrl) {
-          alert("Todavía no hay ninguna grabación");
-          return;
-        }
-        const audio = new Audio(currentAudioUrl);
-        audio.play();
-      }
-
-      document.getElementById("downloadBtn").addEventListener("click", downloadRecording);
-      document.getElementById("play-button").addEventListener("click", playRecording);
-
-      // ⚡️ Solo para pruebas (simula una grabación después de 2 segundos)
-      setTimeout(() => {
-        setRecordingUrl("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3");
-      }, 2000);
-    </script>
-
-    <script src="poem.js"></script>
+  <script src="poem.js"></script>
 </body>
 </html>
