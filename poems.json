@@ -12,5 +12,12 @@
     "text": "La princesa está triste...",
     "author": "Rubén Darío",
     "theme": "Fantasía"
+  },
+  {
+    "id": 3,
+    "title": "Noche de Diciembre",
+    "text": "¡Noche, noche de diciembre!\nEs un abismo de sombra, un profundo hueco.\nEn el cielo estrellado, la luna murmura un eco.\nY el viento, en su soplo, es un frío que quiebra y rompe.\n\nEs la noche del alma, un gran silencio, un sollozo.\nUn latido de un corazón, y un frío gozoso.\n¡Noche, noche de diciembre, por ti mi dolor es hondo!\n¡Y mi alma, en ti, con la tristeza se hunde hasta el fondo!",
+    "author": "Manuel Acuña",
+    "theme": "Tristeza"
   }
 ]

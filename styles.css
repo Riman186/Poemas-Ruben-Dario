@@ -78,3 +78,26 @@ button:hover {
     font-size: 0.8rem;
     padding: 0.3rem 0.6rem;
 }
+.karaoke-line { color: black; transition: color 0.3s; }
+.karaoke-line.active { color: red; font-weight: bold; }
+.karaoke-line {
+  color: black;
+  transition: color 0.3s;
+}
+.karaoke-line.active {
+  color: red;
+  font-weight: bold;
+}
+ .search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#search-bar {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}

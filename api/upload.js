@@ -4,11 +4,10 @@ async function shareRecording() {
   try {
     const blob = await fetch(currentAudioUrl).then(r => r.blob());
 
-    // Crear un link de descarga
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "mi-grabacion.mp3"; // nombre del archivo
+    a.download = "mi-grabacion.mp3"; 
     document.body.appendChild(a);
     a.click();
     a.remove();
