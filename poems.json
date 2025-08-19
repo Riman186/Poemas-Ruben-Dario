@@ -2,22 +2,29 @@
   {
     "id": 1,
     "title": "A Margarita Debayle",
-    "text": "Margarita, está linda la mar...",
+    "text": "Margarita, está linda la mar,\ny el viento\nlleva esencia sutil de azahar.\nTu aliento,\nya que cerca de mí estás,\nviene a mí.\n¡Oh, qué suave olor a jazmín!\n¡Oh, qué dulce fragancia!\n¡Oh, qué dulce armonía!\nTu voz es como un canto de ave.\nTu sonrisa, un rayo de sol.\nTu alma, un poema.\nTu ser, una flor.",
     "author": "Rubén Darío",
     "theme": "Infantil"
   },
   {
     "id": 2,
     "title": "Sonatina",
-    "text": "La princesa está triste...",
+    "text": "La princesa está triste...\n¿qué tendrá la princesa?\nLos suspiros se escapan de su boca de fresa,\nque ha perdido la risa, que ha perdido el color.\nLa princesa está pálida en su silla de oro,\nestá mudo el teclado de su clave de oro;\ny en un vaso, olvidada, se desmaya una flor.\nEl jardín puebla el triunfo de los pavos reales.\nEl sol va por la luna.\nLas fuentes, en sus coplas.\nLas fuentes, en sus coplas.\nEl viento, en sus cantos.\nLa princesa, en sus penas.\n¿Qué tendrá la princesa?",
     "author": "Rubén Darío",
     "theme": "Fantasía"
   },
   {
     "id": 3,
-    "title": "Noche de Diciembre",
-    "text": "¡Noche, noche de diciembre!\nEs un abismo de sombra, un profundo hueco.\nEn el cielo estrellado, la luna murmura un eco.\nY el viento, en su soplo, es un frío que quiebra y rompe.\n\nEs la noche del alma, un gran silencio, un sollozo.\nUn latido de un corazón, y un frío gozoso.\n¡Noche, noche de diciembre, por ti mi dolor es hondo!\n¡Y mi alma, en ti, con la tristeza se hunde hasta el fondo!",
-    "author": "Manuel Acuña",
-    "theme": "Tristeza"
+    "title": "Lo Fatal",
+    "text": "Dichoso el árbol, que es apenas sensitivo,\ny más la piedra dura porque ésa ya no siente,\nporque no hay dolor más grande que el dolor de ser vivo,\nni mayor pesadumbre que la vida consciente.\n\nSer, y no saber nada, y ser sin rumbo cierto,\ny el temor de haber sido y un futuro terror...\ny el espanto seguro de estar mañana muerto,\ny sufrir por la vida y por la sombra y por\nlo que no conocemos y apenas sospechamos,\ny la carne que tienta con sus frescos racimos,\ny la tumba que aguarda con sus fúnebres ramos,\n¡y no saber adónde vamos,\nni de dónde venimos!...",
+    "author": "Rubén Darío",
+    "theme": "Filosofía"
+  },
+  {
+    "id": 4,
+    "title": "Un cuento",
+    "text": "En el lejano Oriente vivía una princesa\nmuy bella y muy pálida,\nque tenía cabellos de noche de luna\ny ojos de sol y de estrellas.\n\nUn día, a su padre, el rey, le dijo:\n—Padre, quiero un príncipe azul.\nY el rey, que la amaba mucho,\nle contestó:\n—Hija mía, ¿dónde lo has de hallar?\nEl cielo es el único príncipe azul.",
+    "author": "Rubén Darío",
+    "theme": "Cuentos"
   }
 ]
