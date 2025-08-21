@@ -1,15 +1,12 @@
-// app.js
 document.addEventListener('DOMContentLoaded', async () => {
     const poemsList = document.getElementById('poems');
     const searchBar = document.getElementById('search-bar');
     const searchButton = document.getElementById('search-button');
 
-    // Almacenar todos los poemas en una variable global para poder filtrarlos
     let allPoems = [];
 
-    // Función para renderizar los poemas en la lista
     function renderPoems(poemsToRender) {
-        poemsList.innerHTML = ''; // Limpiar la lista actual
+        poemsList.innerHTML = ''; 
         if (poemsToRender.length === 0) {
             poemsList.innerHTML = '<p>No se encontraron poemas.</p>';
         }
@@ -28,7 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // Cargar los poemas al inicio
     try {
         const response = await fetch('poems.json');
         allPoems = await response.json();
@@ -38,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         poemsList.innerHTML = '<p>Error al cargar los poemas. Intenta de nuevo más tarde.</p>';
     }
 
-    // Agregar evento al botón de búsqueda
     searchButton.addEventListener('click', () => {
         const searchTerm = searchBar.value.toLowerCase();
         const filteredPoems = allPoems.filter(poem => {
@@ -48,7 +43,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderPoems(filteredPoems);
     });
 
-    // Opcional: Agregar evento a la barra de búsqueda para que se filtre al presionar "Enter"
     searchBar.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             searchButton.click();

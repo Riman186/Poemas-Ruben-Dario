@@ -85,8 +85,6 @@ async function loadPoem() {
   }
 
   document.getElementById("poem-title").textContent = poem.title;
-
-  // Dividir texto en versos
   poemLines = poem.text.split("\n");
   const container = document.getElementById("poem-text");
   container.innerHTML = "";
@@ -131,10 +129,8 @@ function startKaraoke() {
     const expected = poemLines[currentLine]?.toLowerCase();
     if (!expected) return;
     
-    // Limpiar la línea esperada de puntuación para una mejor comparación
     const cleanedExpected = expected.replace(/[¿?¡!,.]/g, '');
 
-    // Compara si la transcripción incluye las primeras 10 letras del verso, para que sea más precisa
     if (transcript.includes(cleanedExpected.slice(0, 10))) {
       highlightLine(currentLine);
       currentLine++;
