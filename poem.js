@@ -36,14 +36,13 @@ function addRecording(url, blob) {
   li.textContent = "Grabación " + new Date().toLocaleTimeString();
 
   const playBtn = document.createElement("button");
-  playBtn.textContent = "▶️";
+  playBtn.textContent = "Reproducir ▶️";
   playBtn.onclick = () => {
     const audio = new Audio(url);
     audio.play();
   };
-
   const downloadBtn = document.createElement("button");
-  downloadBtn.textContent = "💾";
+  downloadBtn.textContent = "Descargar 💾";
   downloadBtn.onclick = () => {
     const a = document.createElement("a");
     a.href = url;
@@ -51,9 +50,8 @@ function addRecording(url, blob) {
     a.click();
   };
 
-  // 🗑️ Eliminar
   const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "🗑️";
+  deleteBtn.textContent = "Eliminar 🗑️";
   deleteBtn.onclick = () => {
     recordingsList.removeChild(li);
   };
