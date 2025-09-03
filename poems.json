@@ -26,5 +26,48 @@
     "text": "En el lejano Oriente vivía una princesa\nmuy bella y muy pálida,\nque tenía cabellos de noche de luna\ny ojos de sol y de estrellas.\n\nUn día, a su padre, el rey, le dijo:\n—Padre, quiero un príncipe azul.\nY el rey, que la amaba mucho,\nle contestó:\n—Hija mía, ¿dónde lo has de hallar?\nEl cielo es el único príncipe azul.",
     "author": "Rubén Darío",
     "theme": "Cuentos"
-  }
+  },
+  {
+    "id": 5,
+    "title": "Venus",
+    "text": "En la tranquila noche, mis nostalgias amargas sufría.\nEn busca de quietud bajé al fresco y callado jardín.\nEn el obscuro cielo Venus bella temblando lucía,\ncomo incrustado en ébano un dorado y divino jazmín.\n\nA mi alma enamorada, una reina oriental parecía,\nque esperaba a su amante bajo el techo de su camarín,\no que, llevada en hombros, la profunda extensión recorría,\ntriunfante y luminosa, recostada sobre un palanquín.\n\n\"¡Oh, reina rubia! -díjele, mi alma quiere dejar su crisálida\ny volar hacia a ti, y tus labios de fuego besar;\ny flotar en el nimbo que derrama en tu frente luz pálida,\n\ny en siderales éxtasis no dejarte un momento de amar\".\nEl aire de la noche refrescaba la atmósfera cálida.\nVenus, desde el abismo, me miraba con triste mirar...",
+    "author": "Rubén Darío",
+    "theme": "Romántico"
+  },
+  {
+    "id": 6,
+    "title": "Amo, amas",
+    "text": "Amar, amar, amar, amar siempre, con todo\nel ser y con la tierra y con el cielo,\ncon lo claro del sol y lo oscuro del lodo;\namar por toda ciencia y amar por todo anhelo.\n\nY cuando la montaña de la vida\nnos sea dura y larga y alta y llena de abismos,\namar la inmensidad que es de amor encendida\n¡y arder en la fusión de nuestros pechos mismos!...",
+    "author": "Rubén Darío",
+    "theme": "Amor"
+  },
+  {
+    "id": 7,
+    "title": "Caupolicán",
+    "text": "Es algo formidable que vio la vieja raza;\nrobusto tronco de árbol al hombro de un campeón\nsalvaje y aguerrido, cuya fornida maza\nblandiera el brazo de Hércules, o el brazo de Sansón.\n\nPor casco sus cabellos, su pecho por coraza,\npudiera tal guerrero, de Arauco en la región,\nlancero de los bosques, Nemrod que todo caza,\ndesjarretar un toro, o estrangular un león.\n\nAnduvo, anduvo, anduvo. Le vio la luz del día,\nle vio la tarde pálida, le vio la noche fría,\ny siempre el tronco de árbol a cuestas del titán.\n\n«¡El Toqui, el Toqui!», clama la conmovida casta.\nAnduvo, anduvo, anduvo. La aurora dijo: «¡Basta!»,\ne irguióse la alta frente del gran Caupolicán.",
+    "author": "Rubén Darío",
+    "theme": "Épico"
+  },
+  {
+    "id": 8,
+    "title": "Del trópico",
+    "text": "¡Qué alegre y fresca la mañanita!\nMe agarra el aire por la nariz:\nlos perros ladran, un chico grita\ny una muchacha gorda y bonita,\njunto a una piedra, muele maíz.\n\nUn mozo trae por un sendero\nsus herramientas y su morral:\notro con caites y sin sombrero\nbusca una vaca con su ternero\npara ordeñarla junto al corral.\n\nSonriendo a veces a la muchacha,\nque de la piedra pasa al fogón,\nun sabanero de buena facha,\ncasi en cuclillas afila el hacha\nsobre una orilla del mollejón.\n\nPor las colinas la luz se pierde\nbajo el cielo claro y sin fin;\nahí el ganado las hojas muerde,\ny hay en los tallos del pasto verde,\nescarabajos de oro y carmín.\n\nSonando un cuerno corvo y sonoro,\npasa un vaquero, y a plena luz\nvienen las vacas y un blanco toro,\ncon unas manchas color de oro\npor la barriga y en el testuz.\n\nY la patrona, bate que bate,\nme regocija con la ilusión\nde una gran taza de chocolate,\nque ha de pasarme por el gaznate\ncon la tostada y el requesón.",
+    "author": "Rubén Darío",
+    "theme": "Costumbrista"
+  },
+  {
+  "id": 9,
+  "title": "Canción de otoño en primavera",
+  "text": "Juventud, divino tesoro,\n¡ya te vas para no volver!\nCuando quiero llorar, no lloro...\ny a veces lloro sin querer.\n\nPlural ha sido la celeste\nhistoria de mi corazón.\nEra una dulce niña, en este\nmundo de duelo y de aflicción.\n\nMiraba como el alba pura,\nsonreía como una flor.\nEra su cabellera obscura\nhecha de noche y de dolor.",
+  "author": "Rubén Darío",
+  "theme": "Nostalgia"
+},
+{
+  "id": 10,
+  "title": "Marcha triunfal",
+  "text": "¡Ya viene el cortejo! ¡Ya viene el cortejo!\nYa se oyen los claros clarines,\nla espada se anuncia con vivo reflejo;\nya viene, oro y hierro, el cortejo de los paladines.\n\nYa viene el cortejo: son los azahares,\nmezclados con los laureles;\nya viene el cortejo de los militares,\nque tienen ensueños de oros y oriflamas fieles.",
+  "author": "Rubén Darío",
+  "theme": "Épico"
+}
+
 ]

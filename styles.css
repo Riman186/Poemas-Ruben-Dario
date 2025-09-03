@@ -45,29 +45,53 @@ main {
     margin: 0 auto;
 }
 
-/* --- Estilos de Botones Generales --- */
+/* --- Estilos generales de botones --- */
 button {
-    font-family: var(--font-family);
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px; /* Botones redondeados */
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 700;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    min-width: 120px; /* Evita que sean demasiado pequeños */
+  font-family: var(--font-family, 'Nunito', sans-serif);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  min-width: 120px;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
+
+/* --- Contenedor de botones --- */
+.botones {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --- Ajustes para móviles --- */
+@media (max-width: 600px) {
+  button {
+    width: 100%;          /* Ocupan todo el ancho disponible */
+    font-size: 1.1rem;    /* Texto un poco más grande */
+    padding: 1rem;        /* Más cómodos de pulsar */
+    margin-bottom: 10px;  /* Separación entre botones */
+  }
+
+  .botones {
+    flex-direction: column;
+    gap: 15px;            /* Más espacio entre botones */
+  }
+}
+
 
 /* --- Contenedor de botones agrupados --- */
 .botones {
@@ -178,19 +202,50 @@ button:active {
 }
 
 /* --- Estilos nuevos para resaltado por línea --- */
+/* Estilo base para las líneas del poema */
 .karaoke-line {
-    transition: background-color 0.3s ease, color 0.3s ease;
-    padding: 0.2em 0.4em;
-    border-radius: 8px;
-    display: inline-block;
-    margin: 0.2em 0;
+  display: inline-block;
+  width: 100%;
+  padding: 6px 10px;
+  margin: 2px 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Línea resaltada (karaoke) */
 .karaoke-line.active {
-    background-color: var(--highlight-color);
-    color: var(--text-color);
-    font-weight: 700;
+  background-color: #ffeb3b;   /* Amarillo vibrante */
+  color: #000;                 /* Texto negro para contraste */
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 235, 59, 0.7);
+  animation: pulseHighlight 1s ease-in-out infinite alternate;
 }
+
+/* Animación suave para atraer la vista */
+@keyframes pulseHighlight {
+  from {
+    background-color: #ffeb3b;
+  }
+  to {
+    background-color: #fff176;
+  }
+}
+
+/* Mejor legibilidad en móviles */
+@media (max-width: 600px) {
+  .karaoke-line {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .karaoke-line.active {
+    background-color: #ff9800; /* Un naranja más fuerte en móvil */
+    color: #fff;
+  }
+}
+
 
 /* --- Sección de Grabación --- */
 #recording-section {
