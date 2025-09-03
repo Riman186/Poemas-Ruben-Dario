@@ -207,9 +207,10 @@ function highlightLine(index) {
   const el = document.getElementById(`line-${index}`);
   if (el) {
     el.classList.add("active");
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.scrollIntoView({ behavior: "smooth", block: "nearest" }); // 👈 más amigable en móvil
   }
 }
+
 
 function resetKaraokeHighlight() {
   document.querySelectorAll(".karaoke-line").forEach(el => el.classList.remove("active"));

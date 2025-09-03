@@ -241,8 +241,9 @@ button:active {
   }
 
   .karaoke-line.active {
-    background-color: #ff9800; /* Un naranja más fuerte en móvil */
-    color: #fff;
+    background-color: #ffeb3b; /* Igual que escritorio */
+    color: #000;               /* Texto negro */
+    font-weight: bold;
   }
 }
 
