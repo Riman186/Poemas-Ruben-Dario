@@ -197,7 +197,41 @@ async function loadPoem() {
 
   currentLine = 0;
 }
+// Detectar si es móvil
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+// Modo manual para móviles
+if (isMobile) {
+    let manualLine = 0;
+    
+    // Agregar botones de navegación
+    const navContainer = document.createElement('div');
+    navContainer.innerHTML = `
+        <div class="mobile-nav" style="margin: 15px 0; text-align: center;">
+            <button id="prev-line" style="margin: 0 5px; padding: 10px;">← Anterior</button>
+            <button id="next-line" style="margin: 0 5px; padding: 10px;">Siguiente →</button>
+        </div>
+    `;
+    document.getElementById('recording-section').prepend(navContainer);
+    
+    // Funcionalidad de los botones
+    document.getElementById('prev-line').addEventListener('click', () => {
+        if (manualLine > 0) {
+            manualLine--;
+            highlightLine(manualLine);
+        }
+    });
+    
+    document.getElementById('next-line').addEventListener('click', () => {
+        if (manualLine < poemLines.length - 1) {
+            manualLine++;
+            highlightLine(manualLine);
+        }
+    });
+    
+    // Iniciar con la primera línea resaltada
+    highlightLine(0);
+}
 function cleanWord(word) {
   return word.trim().toLowerCase().replace(/[¿?¡!,.\-—"']/g, '');
 }
