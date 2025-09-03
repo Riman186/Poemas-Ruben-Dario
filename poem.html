@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leer Poema</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-      <h1 id="poem-title">Poema</h1>
+      <h1 id="poem-title">Cargando poema...</h1>
   </header>
   <main>
+      <section id="poem-container">
+          <div id="poem-text"></div>
+      </section>
+
       <section id="recording-section">
+            <canvas id="audio-visualizer" width="300" height="80"></canvas>
           <button id="record-button">🎤 Grabar</button>
       </section>
 
@@ -21,6 +27,13 @@
       </section>
   </main>
 
+  <div id="feedbackModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <p id="feedbackMessage"></p>
+    </div>
+  </div>
+  
   <script src="poem.js"></script>
 </body>
 </html>
