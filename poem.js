@@ -8,6 +8,8 @@ let animationFrameId;
 let recognition;
 let currentLine = 0;
 let poemLines = [];
+let isRecording = false;
+let karaokeInterval;
 
 let audioContext;
 let analyser;
@@ -56,6 +58,7 @@ recordBtn.addEventListener("click", async () => {
 
         currentLine = 0;
         resetKaraokeHighlight();
+        stopKaraokeHighlight();
 
         cancelAnimationFrame(animationFrameId);
         visualizerCanvas.style.display = 'none';
@@ -64,6 +67,7 @@ recordBtn.addEventListener("click", async () => {
       mediaRecorder.start();
       startTime = new Date();
       recordBtn.textContent = "⏹️ Detener";
+      isRecording = true;
 
       visualizerCanvas.style.display = 'block';
       drawVisualizer();
@@ -84,18 +88,21 @@ function stopRecording() {
     mediaRecorder.stop();
   }
   recordBtn.textContent = "🎤 Grabar";
+  isRecording = false;
   cancelAnimationFrame(animationFrameId);
   visualizerCanvas.style.display = 'none';
   if (recognition) {
     recognition.stop();
     recognition = null;
   }
+  stopKaraokeHighlight();
 }
 
 function resetUI() {
   recordBtn.textContent = "🎤 Grabar";
   visualizerCanvas.style.display = 'none';
   resetKaraokeHighlight();
+  stopKaraokeHighlight();
 }
 
 closeModalBtn.addEventListener('click', () => feedbackModal.style.display = "none");
@@ -191,47 +198,29 @@ async function loadPoem() {
     span.textContent = line;
     span.id = `line-${index}`;
     span.classList.add("karaoke-line");
+    
+    // Hacer las líneas clickeables en móvil
+    if (isMobileDevice()) {
+      span.style.cursor = "pointer";
+      span.addEventListener('click', () => {
+        highlightLine(index);
+        currentLine = index;
+      });
+    }
+    
     container.appendChild(span);
     container.appendChild(document.createElement("br"));
   });
 
   currentLine = 0;
+  // Resaltar primera línea automáticamente
+  highlightLine(0);
 }
-// Detectar si es móvil
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-// Modo manual para móviles
-if (isMobile) {
-    let manualLine = 0;
-    
-    // Agregar botones de navegación
-    const navContainer = document.createElement('div');
-    navContainer.innerHTML = `
-        <div class="mobile-nav" style="margin: 15px 0; text-align: center;">
-            <button id="prev-line" style="margin: 0 5px; padding: 10px;">← Anterior</button>
-            <button id="next-line" style="margin: 0 5px; padding: 10px;">Siguiente →</button>
-        </div>
-    `;
-    document.getElementById('recording-section').prepend(navContainer);
-    
-    // Funcionalidad de los botones
-    document.getElementById('prev-line').addEventListener('click', () => {
-        if (manualLine > 0) {
-            manualLine--;
-            highlightLine(manualLine);
-        }
-    });
-    
-    document.getElementById('next-line').addEventListener('click', () => {
-        if (manualLine < poemLines.length - 1) {
-            manualLine++;
-            highlightLine(manualLine);
-        }
-    });
-    
-    // Iniciar con la primera línea resaltada
-    highlightLine(0);
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
+
 function cleanWord(word) {
   return word.trim().toLowerCase().replace(/[¿?¡!,.\-—"']/g, '');
 }
@@ -241,19 +230,33 @@ function highlightLine(index) {
   const el = document.getElementById(`line-${index}`);
   if (el) {
     el.classList.add("active");
-    el.scrollIntoView({ behavior: "smooth", block: "nearest" }); // 👈 más amigable en móvil
+    
+    // Scroll suave para móviles
+    setTimeout(() => {
+      el.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center',
+        inline: 'nearest'
+      });
+    }, 100);
   }
 }
-
 
 function resetKaraokeHighlight() {
   document.querySelectorAll(".karaoke-line").forEach(el => el.classList.remove("active"));
 }
 
 function startKaraoke() {
+  // En móviles, usar karaoke automático en lugar de reconocimiento de voz
+  if (isMobileDevice()) {
+    startKaraokeHighlight();
+    return;
+  }
+  
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {
     alert("Tu navegador no soporta reconocimiento de voz. Usa Chrome o Edge.");
+    startKaraokeHighlight(); // Fallback a karaoke automático
     return;
   }
 
@@ -281,8 +284,37 @@ function startKaraoke() {
     }
   };
 
-  recognition.onerror = (e) => console.error("Error en reconocimiento de voz:", e.error);
+  recognition.onerror = (e) => {
+    console.error("Error en reconocimiento de voz:", e.error);
+    // Si falla el reconocimiento, cambiar a modo automático
+    if (isRecording) {
+      startKaraokeHighlight();
+    }
+  };
+  
   recognition.start();
+}
+
+function startKaraokeHighlight() {
+  // Reiniciar contador
+  currentLine = 0;
+  highlightLine(0);
+  
+  // Avanzar automáticamente cada X segundos
+  clearInterval(karaokeInterval);
+  karaokeInterval = setInterval(() => {
+    if (currentLine < poemLines.length - 1 && isRecording) {
+      currentLine++;
+      highlightLine(currentLine);
+    } else if (!isRecording) {
+      clearInterval(karaokeInterval);
+    }
+  }, 3000); // Cambia de línea cada 3 segundos
+}
+
+function stopKaraokeHighlight() {
+  clearInterval(karaokeInterval);
+  resetKaraokeHighlight();
 }
 
 function drawVisualizer() {
